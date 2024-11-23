@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter, IBM_Plex_Sans_Thai } from "next/font/google";
 import "./globals.css";
+import Navigation from "./components/Navigation";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const inter = Inter({ subsets: ["latin"] });
+
+const ibmPlexSansThai = IBM_Plex_Sans_Thai({
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  subsets: ["latin", "thai"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,11 +22,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" className={inter.className}>
+      <head />
+      <body className={ibmPlexSansThai.className}>
+        <div className="h-screen w-[390px] m-auto relative">
+          {children}
+          <Navigation />
+        </div>
       </body>
     </html>
   );

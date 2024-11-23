@@ -11,6 +11,18 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        cream: "#FFF6E9",
+        green: "#0D9276",
+        darkBlue: "#40A2E3",
+        blue: "#BBE2EC",
+        lightGreen: "#9FE8B1",
+        darkGreen: "#0D9276",
+        water: "#1976B3",
+        redSunday: "#FA5B5B",
+        mango: "#FEF2B7",
+        pinki: "#F991CC",
+        orange: "#FFC489",
+        purr: "#EA95F2"
       },
     },
   },

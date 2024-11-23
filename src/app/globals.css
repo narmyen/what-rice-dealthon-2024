@@ -2,20 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* สำหรับ Internet Explorer และ Edge */
+  scrollbar-width: none; /* สำหรับ Firefox */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* สำหรับ Chrome, Safari, และ Opera */
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
