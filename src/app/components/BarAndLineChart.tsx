@@ -40,7 +40,7 @@ function BarAndLineChart({ data }: BarAndLineChartProps) {
     };
 
     const chartData: ChartData = {
-      labels: ['PVC1', 'PVC2', 'PVC3', 'PVC4', 'PVC5', 'PVC6', "PVC7"],  // Static labels
+      labels: ['PVC1', 'PVC2', 'PVC3'],  // Static labels
       datasets: [
         {
           type: 'bar' as const,
@@ -49,18 +49,6 @@ function BarAndLineChart({ data }: BarAndLineChartProps) {
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           borderColor: 'rgba(75, 192, 192, 1)',
           borderWidth: 1,
-        },
-        {
-          type: 'line' as const,
-          label: 'ระดับน้ำ(cm.) ',
-          data,  // Use the same `data` array for the line dataset
-          borderColor: 'rgba(255, 99, 132, 1)',
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderWidth: 2,
-          pointBackgroundColor: 'rgba(255, 99, 132, 1)',
-          pointBorderColor: '#fff',
-          pointBorderWidth: 2,
-          pointRadius: 5,
         },
       ],
     };

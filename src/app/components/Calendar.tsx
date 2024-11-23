@@ -5,12 +5,11 @@ interface CalendarProps {
   date: string;
 }
 
-// Function to generate mock data dynamically in "dd-mm-yyyy" format
 const generateMockupData = () => {
   const mockData: { [key: string]: string } = {};
   const dateRanges = [
     { start: 1, end: 5, month: 10, year: 2024, status: 'แห้ง' },
-    { start: 6, end: 22, month: 10, year: 2024, status: 'เปียก' },
+    { start: 6, end: 23, month: 10, year: 2024, status: 'เปียก' },
   ];
 
   dateRanges.forEach((range) => {
@@ -36,7 +35,7 @@ function Calendar({ selectedStatus, date }: CalendarProps) {
   const firstDayOfMonth = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  const [statusByDay, setStatusByDay] = useState<{ [key: number]: string }>({});
+  const [statusByDay, setStatusByDay] = useState<{ [key: string]: string }>({});
 
   // Generate calendar days including empty days at the start for alignment
   const calendarDays = [
@@ -59,18 +58,15 @@ function Calendar({ selectedStatus, date }: CalendarProps) {
     { day: 'Sat', color: 'bg-purr' },
   ];
 
-  // Effect to log selected date and status on load
   useEffect(() => {
-    console.log(`Selected Date: ${date}, Status: ${selectedStatus}`);
-
-    // Set the status for the current date when loaded
-    if (currentDate) {
+    if (date && selectedStatus) {
       setStatusByDay((prevStatus) => ({
         ...prevStatus,
-        [currentDate]: selectedStatus,
+        [date]: selectedStatus,
       }));
     }
-  }, [date, selectedStatus, currentDate]);
+  }, [date, selectedStatus]);
+
 
   return (
     <div className="pt-8 flex flex-col items-center bg-white overflow-scroll hide-scrollbar">
@@ -89,12 +85,12 @@ function Calendar({ selectedStatus, date }: CalendarProps) {
         {/* Render days of the month */}
         {calendarDays.map((day, index) => {
           const dayString = day ? `${day.toString().padStart(2, '0')}-${(month + 1).toString().padStart(2, '0')}-${year}` : '';
-          const status = day && mockupDateAndStatus[dayString]; // Get status from mock data if available
+          const status = day && (statusByDay[dayString] || mockupDateAndStatus[dayString]); // Get status from state or mock data if available
 
           return (
             <div
               key={index}
-              className={`relative flex flex-col items-start p-1 aspect-square border-[1px] cursor-pointer 
+              className={`relative flex flex-col items-start p-1 aspect-square border-[1px]
                 ${day === currentDate ? 'bg-darkGreen text-white' : day ? 'bg-white' : ''}`}
             >
               {/* Render actual day and status */}
@@ -103,8 +99,7 @@ function Calendar({ selectedStatus, date }: CalendarProps) {
                   <p className="text-sm font-medium self-start">{day}</p>
                   {status && (
                     <p
-                      className={`text-center mt-1 p-[2px] rounded-full w-[30px] font-semibold text-[8px] ${status === 'เปียก' ? 'text-darkBlue bg-cream ' : 'bg-cream text-orange '
-                        }`}
+                      className={`text-center mt-1 p-[2px] rounded-full w-[30px] font-semibold text-[8px] ${status === 'เปียก' ? 'text-darkBlue bg-cream ' : 'bg-cream text-orange '}`}
                     >
                       {status}
                     </p>

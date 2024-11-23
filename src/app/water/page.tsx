@@ -1,9 +1,11 @@
 'use client'
 import React, { useState } from 'react'
-import { SearchIcon } from '../components/icons/Icons'
-import image from "../components/image/mockup.png";
+import { LocationIcon, SearchIcon } from '../components/icons/Icons'
+import image from "../components/image/mockup1.png";
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';  // นำเข้า useRouter
+import { Button, Tooltip } from '@mui/material';
+import { blueGrey } from '@mui/material/colors';
 
 function page() {
   const router = useRouter();  // เรียกใช้ useRouter เพื่อเข้าถึงฟังก์ชั่นในการเปลี่ยนหน้า
@@ -33,19 +35,37 @@ function page() {
         </div>
       </div>
 
-      <div className="mb-4 w-full h-[350px] relative rounded-[10px] overflow-hidden">
+
+      <div className="flex items-center justify-center mb-4 w-full h-[350px] relative rounded-[10px] overflow-hidden">
         <Image
           src={image}
           alt="mockup image"
           layout="fill"
           objectFit="cover"
         />
+
+        <div className='absolute left-12 top-48 cursor-pointer'>
+          <Tooltip title="ปกติสุข" arrow>
+            <Button><LocationIcon /></Button>
+          </Tooltip>
+        </div>
+        <div className='absolute left-24 top-48 cursor-pointer'>
+          <Tooltip title="ช่วยด้วย" arrow>
+            <Button><LocationIcon /></Button>
+          </Tooltip>
+        </div>
+        <div className='absolute left-40 top-48 cur'>
+          <Tooltip title="ปกติสุข" arrow>
+            <Button><LocationIcon /></Button>
+          </Tooltip>
+        </div>
+
       </div>
 
       <div
         onClick={handleClick}  // เรียกใช้ handleClick เมื่อคลิก
         className='shadow-md cursor-pointer py-[4px] px-[21px] text-center text-cream text-[20px] font-bold bg-darkGreen flex items-center justify-center rounded-[10px] w-[126px]'>
-        <p>ตกลง</p>
+        <p>ตกลง </p>
       </div>
     </div>
   )
